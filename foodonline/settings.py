@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'foodapp', 
     'accounts_main',
+    'vendor',
     
 ]
 
