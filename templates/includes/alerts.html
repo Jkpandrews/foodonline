@@ -1,5 +1,17 @@
 {% if messages  %}
-    {% for message in messages%}
+{% for message in messages%}
+{% if message.tags == 'error' %}
+
+    <div class="alert alert-danger" role="alert">
+           
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span> 
+        </button>
+       
+    </div>
+{% else %}
+
         <div class="alert alert-success" role="alert">
            
             {{ message }}
@@ -8,5 +20,6 @@
             </button>
            
         </div>
+        {% endif %}
     {% endfor %}
 {% endif %}
