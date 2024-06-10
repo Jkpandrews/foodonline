@@ -1,0 +1,18 @@
+{% autoescape off %}
+
+Hello {{ user.first_name }},
+
+Thank you for registering on our website. To complete your registration, please verify your email address by clicking the link below:
+
+Click to Verify
+http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+
+If the link above doesn't work, please copy and paste the URL into your web browser.
+
+If you did not sign up for an account, you can ignore this email.
+
+Thank you,
+
+The ADoT Team
+
+{% endautoescape %}
