@@ -1,0 +1,13 @@
+{% autoescape off %}
+Hello {{ user.first_name }},
+{% if is_approved %}
+Congratulations your restaurant is approved. If you did not sign up for an
+account, you can ignore this email. 
+Thank you, 
+The ADoT Team 
+{% else %} 
+Sorry your restaurant is not approved. Contact us with valid license of your
+restaurant If you did not sign up for an account, you can ignore this email.
+Thank you,
+The ADoT Team 
+{% endif %} {% endautoescape %}

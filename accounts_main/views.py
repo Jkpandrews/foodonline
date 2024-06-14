@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required,user_passes_test
 from django.core.exceptions import PermissionDenied
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.contrib.auth.tokens import default_token_generator
-
+from vendor.models import Vendor
 
 # Restrict vendor accessing customer page
 def check_role_vendor(user):
@@ -155,9 +155,6 @@ def forgot_password(request):
         
         if User.objects.filter(email=email).exists():
             user = User.objects.get(email__exact=email)
-            
-            
-            
             mail_subject = 'Reset your password '
             email_template = 'accounts/emails/reset_password_email.html'
             send_verification_email(request, user,mail_subject, email_template)
@@ -232,6 +229,10 @@ def custDashboard(request):
 @login_required(login_url = 'login')
 @user_passes_test(check_role_vendor)
 def venDashboard(request):
-    return render(request, 'accounts/venDashboard.html')
+    vendor = Vendor.objects.get(user=request.user)
+    context = {
+        'vendor': vendor,
+    }
+    return render(request, 'accounts/venDashboard.html', context)
 
 
